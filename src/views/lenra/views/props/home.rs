@@ -3,16 +3,12 @@ use lenra_app::{
     view::{ViewParams, ViewResponse, ViewResponseGenerator},
     Result,
 };
-use serde_json::json;
 
-use crate::{
-    listeners::{COUNTER_COLLECTION, CURRENT_USER, GLOBAL_USER},
-    views::lenra::counter::CounterViewProps,
-};
+use crate::views::lenra::counter::CounterViewProps;
 
 pub fn home(_params: ViewParams) -> Result<ViewResponse> {
     let result: LenraComponent = flex(vec![
-        view("lenra:views.props.counter")
+        view("lenra/views/props/counter")
             .props(Some(
                 CounterViewProps {
                     text: "1st Counter".into(),
@@ -20,7 +16,7 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
                 .try_into()?,
             ))
             .try_into()?,
-        view("lenra:views.props.counter")
+        view("lenra/views/props/counter")
             .props(Some(
                 CounterViewProps {
                     text: "2nd Counter".into(),

@@ -1,7 +1,7 @@
 use lenra_app::view::View;
 
 mod json;
-mod lenra;
+pub mod lenra;
 
 pub fn get_views() -> Vec<View> {
     let mut views: Vec<View> = vec![];
