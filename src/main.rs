@@ -53,28 +53,7 @@ fn main() -> Result<()> {
                             .path("/")
                             .view(view("lenra:main"))
                             .try_into()
-                            .unwrap(),
-
-                        // Views
-                        Route::builder()
-                            .path("/views/props")
-                            .view(view("lenra:main"))
-                            .try_into()
-                            .unwrap(),
-                        Route::builder()
-                            .path("/views/find")
-                            .view(view("lenra:main"))
-                            .try_into()
-                            .unwrap(),
-                        Route::builder()
-                            .path("/views/context")
-                            .view(view("lenra:main"))
-                            .try_into()
-                            .unwrap(),
-
-                        // Components
-                        // TODO: Create routes for each components
-
+                            .unwrap()
                     ])
                     .try_into()
                     .unwrap(),
