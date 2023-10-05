@@ -10,6 +10,31 @@ use lenra_app::{
 use serde_json::json;
 
 pub fn get_manifest() -> Result<Manifest> {
+    let mut lenra_test_routes: Vec<Route> = get_test_views()
+        .iter()
+        .map(|path| {
+            Route::builder()
+                .path(format!("/{}", path))
+                .view(
+                    view("lenra:main").props(Some(
+                        LenraRouteProps {
+                            name: path.to_string(),
+                        }
+                        .try_into()
+                        .unwrap(),
+                    )),
+                )
+                .try_into()
+                .unwrap()
+        })
+        .collect();
+
+    let mut lenra_routes: Vec<Route> = vec![Route::builder()
+        .path("/")
+        .view(view("lenra:main"))
+        .try_into()
+        .unwrap()];
+    lenra_routes.append(&mut lenra_test_routes);
     Ok(Manifest::builder()
         .json(Some(
             Exposer::builder()
@@ -41,29 +66,6 @@ pub fn get_manifest() -> Result<Manifest> {
                 ])
                 .try_into()?,
         ))
-        .lenra(Some(
-            Exposer::builder()
-                .routes(
-                    get_test_views()
-                        .iter()
-                        .map(|path| {
-                            Route::builder()
-                                .path(format!("/{}", path))
-                                .view(
-                                    view("lenra:main").props(Some(
-                                        LenraRouteProps {
-                                            name: path.to_string(),
-                                        }
-                                        .try_into()
-                                        .unwrap(),
-                                    )),
-                                )
-                                .try_into()
-                                .unwrap()
-                        })
-                        .collect::<Vec<Route>>(),
-                )
-                .try_into()?,
-        ))
+        .lenra(Some(Exposer::builder().routes(lenra_routes).try_into()?))
         .try_into()?)
 }

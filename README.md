@@ -33,36 +33,58 @@
 
 ## List of managed features
 
-- Lenra views
-  - find
-  - props
-  - context
-  - Lenra components
-- JSON views
-  - listeners (with custom event values)
-- Lenra listeners
-  - System listeners
-    - onEnvStart
-    - onUserFirstJoin
-    - onSessionStart
-    <!-- - onSessionStop
-    - onUserLeave
-    - onEnvStop -->
-  - Interface listeners for each component
-- Query
-  - Find
-    - operators
-    - projections
-    <!-- - options -->
-  - UpdateMany
-  - CreateDoc
-  - UpdateDoc
-  - DeleteDoc
-  - GetDoc
-  - Transactions
-- Cron
-- @lenra:navTo
-- Webhooks
+- [ ] Lenra views
+  - [ ] find
+  - [x] props
+  - [ ] context
+- [ ] Lenra components (with every listeners)
+  - [ ] Actionable
+  - [ ] Button
+  - [ ] Carousel
+  - [ ] Checkbox
+  - [ ] Container
+  - [ ] DropDownButton
+  - [ ] Flex
+  - [ ] Flexible
+  - [ ] Form
+  - [ ] Icon
+  - [ ] Image
+  - [ ] Menu
+  - [ ] MenuItem
+  - [ ] OverlayEntry
+  - [ ] Radio
+  - [ ] Slider
+  - [ ] Stack
+  - [ ] StatusSticker
+  - [ ] Text
+  - [ ] TextField
+  - [ ] Toggle
+  - [x] View
+  - [ ] Wrap
+- [ ] JSON views
+  - [ ] listeners (with custom event values)
+- [ ] Lenra listeners
+  - [ ] System listeners
+    - [ ] onEnvStart
+    - [ ] onUserFirstJoin
+    - [ ] onSessionStart
+    <!-- - [ ] onSessionStop
+    - [ ] onUserLeave
+    - [ ] onEnvStop -->
+- [ ] Query
+  - [ ] Find
+    - [ ] operators
+    - [ ] projections
+    <!-- - [ ] options -->
+  - [ ] UpdateMany
+  - [ ] CreateDoc
+  - [ ] UpdateDoc
+  - [ ] DeleteDoc
+  - [ ] GetDoc
+  - [ ] Transactions
+- [ ] Cron
+- [ ] @lenra:navTo
+- [ ] Webhooks
 
 
 <!-- GETTING STARTED -->

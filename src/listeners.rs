@@ -18,11 +18,13 @@ pub fn get_listeners() -> Vec<Listener> {
     vec![
         Listener::new(
             SystemEvents::OnEnvStart.to_str(),
-            |params: ListenerParams| create_counter(&params.api, GLOBAL_USER),
+            // |params: ListenerParams| create_counter(&params.api, GLOBAL_USER),
+            |_params: ListenerParams| Ok(()),
         ),
         Listener::new(
             SystemEvents::OnUserFirstJoin.to_str(),
-            |params: ListenerParams| create_counter(&params.api, CURRENT_USER),
+            // |params: ListenerParams| create_counter(&params.api, CURRENT_USER),
+            |_params: ListenerParams| Ok(()),
         ),
         Listener::new(
             SystemEvents::OnSessionStart.to_str(),
