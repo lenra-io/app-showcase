@@ -32,6 +32,22 @@
 
 - [ ] Lenra views
   - [ ] find
+
+    - [X] $eq
+    - [ ] $ne
+    - [ ] $gt
+    - [ ] $gte
+    - [ ] $lt
+    - [ ] $lte
+    - [ ] $in
+    - [ ] $nin
+    - [ ] $and
+    - [ ] $or
+    - [ ] $not
+    - [ ] $nor
+    - [ ] $exists
+    - [ ] $type
+    - [ ] $all
   - [X] props
   - [ ] context
 - [ ] Lenra components (with every listeners)

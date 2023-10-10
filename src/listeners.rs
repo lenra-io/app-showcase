@@ -19,11 +19,11 @@ pub fn get_listeners() -> Vec<Listener> {
     vec![
         Listener::new(
             SystemEvents::OnEnvStart.to_str(),
-            |params: ListenerParams| create_counter(&params.api, GLOBAL_USER.into(), None),
+            |params: ListenerParams| create_counter_if_not_exists(&params.api, GLOBAL_USER),
         ),
         Listener::new(
             SystemEvents::OnUserFirstJoin.to_str(),
-            |params: ListenerParams| create_counter(&params.api, CURRENT_USER.into(), None),
+            |params: ListenerParams| create_counter_if_not_exists(&params.api, CURRENT_USER),
         ),
         Listener::new(
             SystemEvents::OnSessionStart.to_str(),
@@ -60,13 +60,13 @@ fn increment(params: ListenerParams<IncrementProps, Value>) -> Result<()> {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Default)]
 pub struct AddCounterProps {
     pub user: String,
-    pub count: Option<u32>
+    pub count: Option<u32>,
 }
 props!(AddCounterProps);
 
 fn add_counter(params: ListenerParams<AddCounterProps, Value>) -> Result<()> {
     let props = params.props.unwrap();
-    create_counter(&params.api, props.user.clone(), props.count.clone());
+    create_counter(&params.api, props.user.clone(), props.count.clone())?;
     Ok(())
 }
 
@@ -81,16 +81,21 @@ fn log_to_console(params: ListenerParams<LogProps, Value>) -> Result<()> {
     Ok(())
 }
 
-fn create_counter(api: &Api, user: String, count: Option<u32>) -> Result<()> {
+fn create_counter_if_not_exists(api: &Api, user: &str) -> Result<()> {
     let coll = api.data.coll(COUNTER_COLLECTION);
     let query: DataQuery = serde_json::from_value(json!({ "user": user }))?;
     let counters: Vec<Counter> = coll.find(query, None::<DataProjection>)?;
     if counters.is_empty() {
-        api.data.coll(COUNTER_COLLECTION).create_doc(Counter {
-            count: count.unwrap_or(0),
-            user: user.into(),
-            ..Default::default()
-        })?;
+        create_counter(api, user.to_string(), None)?;
     }
+    Ok(())
+}
+
+fn create_counter(api: &Api, user: String, count: Option<u32>) -> Result<()> {
+    api.data.coll(COUNTER_COLLECTION).create_doc(Counter {
+        count: count.unwrap_or(0),
+        user: user.into(),
+        ..Default::default()
+    })?;
     Ok(())
 }
