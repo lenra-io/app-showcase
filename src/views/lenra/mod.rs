@@ -7,6 +7,7 @@ mod home;
 pub mod main;
 mod menu;
 mod views;
+mod components;
 
 pub fn get_views() -> Vec<View> {
     let mut views: Vec<View> = vec![
@@ -16,12 +17,14 @@ pub fn get_views() -> Vec<View> {
         View::new("lenra:counter", counter),
     ];
     views.append(&mut views::get_views());
+    views.append(&mut components::get_views());
     views
 }
 
 pub fn get_test_views() -> Vec<String> {
     let mut views = vec![];
     views.append(&mut views::get_test_views());
+    views.append(&mut components::get_test_views());
     views
 }
 

@@ -22,7 +22,10 @@ pub fn get_manifest() -> Result<Manifest> {
                         }
                         .try_into()
                         .unwrap(),
-                    )),
+                    )).context(serde_json::Map::from_iter(vec![(
+                        "screenSize".into(),
+                        true.into(),
+                    )])),
                 )
                 .try_into()
                 .unwrap()
