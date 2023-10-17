@@ -40,7 +40,7 @@
     - [X] $lt
     - [X] $lte
     - [X] $in
-    - [ ] $nin
+    - [X] $nin
     - [ ] $and
     - [ ] $or
     - [ ] $not

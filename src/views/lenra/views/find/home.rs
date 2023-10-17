@@ -127,6 +127,15 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
             .try_into()?,
     ))])?]);
 
+    // $nin tests
+    children.append(&mut vec![test_group("$nin", vec![("Not in [0, 5, 10, 15]",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({"count": { "$nin": [ 0, 5, 10, 15 ] }}))
+            .try_into()?,
+    ))])?]);
+
     let result: LenraComponent = flex(children)
     .direction(StylesDirection::Vertical)
     .spacing(32_f64)
