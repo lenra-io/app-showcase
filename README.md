@@ -34,7 +34,7 @@
   - [ ] find
 
     - [X] $eq
-    - [ ] $ne
+    - [X] $ne
     - [ ] $gt
     - [ ] $gte
     - [ ] $lt

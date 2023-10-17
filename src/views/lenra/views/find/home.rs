@@ -58,6 +58,29 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
             .try_into()?,
     ))])?]);
 
+    // $ne tests
+    children.append(&mut vec![test_group("$ne", vec![("Not User counters",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({"user": { "$ne": CURRENT_USER }}))
+            .try_into()?,
+    )),
+    ("Not Global counters",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({ "user": { "$ne": GLOBAL_USER }}))
+            .try_into()?,
+    )),
+    ("Not Unkown user counters",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({ "user": { "$ne": "not exists" }}))
+            .try_into()?,
+    ))])?]);
+
     let result: LenraComponent = flex(children)
     .direction(StylesDirection::Vertical)
     .spacing(32_f64)
