@@ -158,9 +158,8 @@ dependencies = [
 
 [[package]]
 name = "lenra-app"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a910c1eb405d11e82edec8c45a083158e8fb0c9094861d81b8fd05c98d472ce0"
+version = "0.0.0"
+source = "git+https://github.com/lenra-io/app-lib-rust.git?branch=fix-from-value#812fe81de4533da50ceb9d481efb896f1ece6597"
 dependencies = [
  "env_logger",
  "log",
