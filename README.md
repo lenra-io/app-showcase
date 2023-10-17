@@ -39,7 +39,7 @@
     - [X] $gte
     - [X] $lt
     - [X] $lte
-    - [ ] $in
+    - [X] $in
     - [ ] $nin
     - [ ] $and
     - [ ] $or
