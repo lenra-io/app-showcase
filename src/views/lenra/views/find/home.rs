@@ -81,13 +81,21 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
             .try_into()?,
     ))])?]);
 
-
-    // $ne tests
+    // $gt tests
     children.append(&mut vec![test_group("$qt", vec![("Greater than 10",
     Some(
         ViewDefinitionsFind::builder()
             .coll(COUNTER_COLLECTION)
             .query(json!({"count": { "$gt": 10 }}))
+            .try_into()?,
+    ))])?]);
+
+    // $gte tests
+    children.append(&mut vec![test_group("$qte", vec![("Greater than 10",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({"count": { "$gte": 10 }}))
             .try_into()?,
     ))])?]);
 
