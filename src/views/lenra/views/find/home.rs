@@ -82,7 +82,7 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
     ))])?]);
 
     // $gt tests
-    children.append(&mut vec![test_group("$qt", vec![("Greater than 10",
+    children.append(&mut vec![test_group("$gt", vec![("Greater than 10",
     Some(
         ViewDefinitionsFind::builder()
             .coll(COUNTER_COLLECTION)
@@ -91,11 +91,20 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
     ))])?]);
 
     // $gte tests
-    children.append(&mut vec![test_group("$qte", vec![("Greater than 10",
+    children.append(&mut vec![test_group("$gte", vec![("Greater or equal 10",
     Some(
         ViewDefinitionsFind::builder()
             .coll(COUNTER_COLLECTION)
             .query(json!({"count": { "$gte": 10 }}))
+            .try_into()?,
+    ))])?]);
+
+    // $lt tests
+    children.append(&mut vec![test_group("$lt", vec![("Lower than 10",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({"count": { "$lt": 10 }}))
             .try_into()?,
     ))])?]);
 
