@@ -38,7 +38,7 @@
     - [X] $gt
     - [X] $gte
     - [X] $lt
-    - [ ] $lte
+    - [X] $lte
     - [ ] $in
     - [ ] $nin
     - [ ] $and

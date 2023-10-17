@@ -108,6 +108,15 @@ pub fn home(_params: ViewParams) -> Result<ViewResponse> {
             .try_into()?,
     ))])?]);
 
+    // $lte tests
+    children.append(&mut vec![test_group("$lte", vec![("Lower or equal 10",
+    Some(
+        ViewDefinitionsFind::builder()
+            .coll(COUNTER_COLLECTION)
+            .query(json!({"count": { "$lte": 10 }}))
+            .try_into()?,
+    ))])?]);
+
     let result: LenraComponent = flex(children)
     .direction(StylesDirection::Vertical)
     .spacing(32_f64)
